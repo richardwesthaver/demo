@@ -3,8 +3,8 @@ O ?= /tmp/cl-demo
 .PHONY:build
 $(O):;mkdir -p $@
 clean:;rm -rf out *.fasl;cargo clean
-build:;ros/build.ros
-docs:;ros/docs.ros
-test:;ros/test.ros
-pack:;ros/pack.ros
+build:;scripts/build.ros
+docs:;scripts/docs.ros
+test:;scripts/test.ros
+pack:;scripts/pack.ros
 ci:clean build docs test pack;

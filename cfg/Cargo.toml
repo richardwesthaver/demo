@@ -3,4 +3,5 @@ name = "cfg"
 version = "0.1.0"
 edition = "2021"
 [dependencies]
+obj = {version = "0.1.0",path = "../obj"}
 serde_dhall = "0.12.1"

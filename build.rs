@@ -5,10 +5,10 @@ fn main() {
   let crate_dir: PathBuf = env::var("CARGO_MANIFEST_DIR")
     .expect("CARGO_MANIFEST_DIR env var is not defined")
     .into();
-  let mpk_py = "build.py";
+  // let mpk_py = "build.py";
   let config = cbindgen::Config::from_file("cbindgen.toml")
     .expect("Unable to find cbindgen.toml configuration file");
-  let build_dir = crate_dir.join("build/");
+  let build_dir = crate_dir.join("ffi/");
   if !build_dir.exists() {
     create_dir(&build_dir).unwrap();
   }
