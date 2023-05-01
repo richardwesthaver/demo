@@ -1,0 +1,8 @@
+#+TITTLE: cl-demo
+
+This is a demo software suite which showcases the power of Common Lisp and Rust.
+
+* Make
+* Run
+* Play
+* Config

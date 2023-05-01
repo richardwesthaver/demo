@@ -1,0 +1,16 @@
+[package]
+name = "cl-demo-rs"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+[lib]
+path = "lib.rs"
+crate-type = ["cdylib"]
+[workspace]
+members = ["cfg","obj"]
+[dependencies]
+libc = "0.2"
+obj = {version = "0.1.0",path = "obj"}
+cfg = {version = "0.1.0",path = "cfg"}
+[build-dependencies]
+cbindgen = "0.20"

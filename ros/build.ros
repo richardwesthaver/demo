@@ -1,0 +1,20 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  #+quicklisp(ql:quickload '() :silent t)
+  )
+
+(defpackage :ros.script.build.3891893519
+  (:use :cl))
+(in-package :ros.script.build.3891893519)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (asdf:load-asd "cl-demo.asd")
+  (asdf:load-system "cl-demo")
+  (asdf:make :cl-demo))
+;;; vim: set ft=lisp lisp:
