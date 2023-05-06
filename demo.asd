@@ -1,11 +1,11 @@
-(asdf:defsystem "cl-demo"
+(asdf:defsystem "demo"
   :version "1.0.0"
   :author "ellis <ellis@rwest.io>"
   :maintainer "ellis <ellis@rwest.io>"
   :description ""
-  :homepage "https://rwest.io/p/cl-demo"
-  :bug-tracker "https://gitlab.rwest.io/ellis/cl-demo/issues"
-  :source-control (:hg "https://gitlab.rwest.io/ellis/cl-demo")
+  :homepage "https://rwest.io/p/demo"
+  :bug-tracker "https://gitlab.rwest.io/ellis/demo/issues"
+  :source-control (:hg "https://gitlab.rwest.io/ellis/demo")
   :license "WTFPL"
   :depends-on (:bordeaux-threads
 	       #+(or ccl sbcl)
@@ -20,15 +20,16 @@
 	       :clingon)
   :serial T
   :components ((:file "pkg")
+	       (:file "ffi")
 	       (:file "tk")
 	       (:file "db")
 	       (:file "ui")
 	       (:file "demo"))
-  ;; :in-order-to ((test-op (test-op "cl-demo/tests")))
+  ;; :in-order-to ((test-op (test-op "demo/tests")))
   ;; :defsystem-depends-on (:deploy)
   ;; :build-operation "deploy"
-  :build-pathname "cl-demo"
-  :entry-point "cl-demo:main")
+  :build-pathname "demo"
+  :entry-point "demo:main")
 
 ;; (asdf:defsystem "cl-demo:tests"
   ;; :depends-on ("cl-demo" "fiveam")

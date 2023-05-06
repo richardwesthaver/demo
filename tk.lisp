@@ -1,4 +1,4 @@
-(in-package #:cl-demo)
+(in-package #:demo)
 
 (defun random-id ()
   (format NIL "~8,'0x-~8,'0x" (random #xFFFFFFFF) (get-universal-time)))

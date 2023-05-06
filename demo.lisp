@@ -1,5 +1,5 @@
 ;; demo.lisp
-(in-package :cl-demo)
+(in-package :demo)
 
 (defparameter demo-path (merge-pathnames "cl-demo" (uiop:temporary-directory)))
 
@@ -20,7 +20,7 @@
 (defun cli-handler (cmd)
   "Handler for the `demo' command."
   (let ((app (cli:getopt cmd :app)))
-    (format t "running app: ~A!~%" app)))
+    (format t "running: ~A!~%" app)))
 
 (defun cli-cmd ()
   "Our demo command."
@@ -30,9 +30,9 @@
    :version "1.0.0"
    :authors '("ellis <ellis@rwest.io>")
    :license "WTFPL"
-   :options (demo/opts)
-   :handler #'demo/handler))
+   :options (cli-opts)
+   :handler #'cli-handler))
 
 (defun main ()
   "A demo of some common-lisp functionality."
-  (cli:run (demo/cmd)))
+  (cli:run (cli-cmd)))

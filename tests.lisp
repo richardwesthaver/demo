@@ -1,1 +1,1 @@
-(in-package :cl-demo)
+(in-package :demo)

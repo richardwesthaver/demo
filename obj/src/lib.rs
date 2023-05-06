@@ -1,12 +1,17 @@
 //! obj/src/lib.rs --- Objective type library
+#![feature(associated_type_bounds)]
 mod err;
-pub use err::{Error,Result};
+pub use err::{Error, Result};
+mod types;
+pub use types::*;
 
 pub use ron;
-
+pub use bincode;
+pub use serde_json;
 use ron::extensions::Extensions;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use std::io;
+use std::collections::{HashMap, BTreeMap};
 
 /// common trait for all config modules. This trait provides functions
 /// for de/serializing to/from RON, updating fields, and formatting.
@@ -123,3 +128,7 @@ pub trait Objective {
     Ok(serde_json::de::from_slice(s.as_bytes())?)
   }
 }
+
+impl<T> Objective for Vec<T> {}
+impl<K,V> Objective for HashMap<K,V> {}
+impl<K,V> Objective for BTreeMap<K,V> {}

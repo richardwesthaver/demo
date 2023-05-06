@@ -1,11 +1,10 @@
 #|
-cl-demo
+demo
 
-> (cl-demo:main)
+> (demo:main)
 |#
-
-(defpackage #:cl-demo
-  (:use #:cl)
+(defpackage #:demo
+  (:use #:cl #:cffi)
   (:local-nicknames
    (#:rdb #:cl-rocksdb)
    (#:v #:org.shirakumo.verbose)
@@ -32,4 +31,6 @@ cl-demo
   ;; tk.lisp
   (:export
    #:random-id
-   #:scan-dir))
+   #:scan-dir)
+  ;; ffi.lisp
+  )

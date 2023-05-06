@@ -1,5 +1,5 @@
 [package]
-name = "cl-demo-rs"
+name = "demo_ffi"
 version = "0.1.0"
 edition = "2021"
 build = "build.rs"
@@ -7,10 +7,10 @@ build = "build.rs"
 path = "lib.rs"
 crate-type = ["cdylib"]
 [workspace]
-members = ["cfg","obj"]
+members = ["obj","fig","proc_macros"]
 [dependencies]
 libc = "0.2"
 obj = {version = "0.1.0",path = "obj"}
-cfg = {version = "0.1.0",path = "cfg"}
+fig = {version = "0.1.0",path = "fig"}
 [build-dependencies]
 cbindgen = "0.20"

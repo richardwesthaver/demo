@@ -1,4 +1,4 @@
-(in-package :cl-demo)
+(in-package :demo)
 
 (defun on-new-window (body)
   "Handle new window event."

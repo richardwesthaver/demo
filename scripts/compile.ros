@@ -6,9 +6,7 @@ exec ros -Q -- $0 "$@"
 (progn ;;init forms
   (in-package :cl-user)
   (ros:ensure-asdf)
-  (asdf:load-asd #P"~/dev/cl-demo/cl-demo.asd")
-  (asdf:load-asd #P"~/quicklisp/local-projects/cl-rocksdb/cl-rocksdb.asd")
-  #+quicklisp(ql:quickload '(cl-demo) :silent t))
+  #+quicklisp(ql:quickload '(demo) :silent t))
 
 ;; TODO 2023-02-25: opts (system, config, user input)
 (defun main (&rest argv)
