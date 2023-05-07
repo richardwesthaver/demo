@@ -53,7 +53,8 @@ demo
 	   #:scan-dir
 	   #:mkstr
 	   #:symb
-	   #:sbq-reader)
+	   #:sbq-reader
+	   #:find-rust-dll)
   ;; ffi.lisp
   ;; (:export)
   )

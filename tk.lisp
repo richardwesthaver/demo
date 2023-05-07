@@ -37,6 +37,5 @@
        (get-macro-character #\`) stream nil)))
 
 (eval-when (:execute)
-  (in-package :demo)
   (set-dispatch-macro-character
    #\# #\` #'demo:sbq-reader))
