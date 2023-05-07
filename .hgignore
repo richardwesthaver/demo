@@ -1,4 +1,9 @@
 out/.*
 .*Cargo.lock$
 .*target/.*
+ffi/_demo.c$
 .*[.]fasl$
+.*[.]o$
+.*[.]so$
+.*[.]dylib$
+.*[.]a$

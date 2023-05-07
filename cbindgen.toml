@@ -1,11 +1,14 @@
-include_guard = "mpk_ffi_h"
+include_guard = "demo_h"
 autogen_warning = "/* DO NOT TOUCH */"
 include_version = true
 language = "C"
 cpp_compat = true
 line_length = 88
-
+documentation = true	
 [parse]
 parse_deps = true
-include = ["mpk_config", "mpk_hash"]
-extra_bindings = ["mpk_hash", "mpk_config"]
+include = ["obj","fig","libc"]
+extra_bindings = ["obj","fig","libc"]
+#expand = ["demo","obj"]
+#[parse.expand]
+#crates = ["demo"]

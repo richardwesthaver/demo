@@ -5,13 +5,13 @@ pub use err::{Error, Result};
 mod types;
 pub use types::*;
 
-pub use ron;
 pub use bincode;
-pub use serde_json;
+pub use ron;
 use ron::extensions::Extensions;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
+pub use serde_json;
+use std::collections::{BTreeMap, HashMap};
 use std::io;
-use std::collections::{HashMap, BTreeMap};
 
 /// common trait for all config modules. This trait provides functions
 /// for de/serializing to/from RON, updating fields, and formatting.
@@ -39,7 +39,7 @@ pub trait Objective {
     Ok(bincode::serialize_into(writer, self)?)
   }
 
-  fn decode<'a>(&self, bytes: &'a [u8]) -> Result<Self>
+  fn decode<'a>(bytes: &'a [u8]) -> Result<Self>
   where
     Self: Deserialize<'a>,
   {
@@ -130,5 +130,5 @@ pub trait Objective {
 }
 
 impl<T> Objective for Vec<T> {}
-impl<K,V> Objective for HashMap<K,V> {}
-impl<K,V> Objective for BTreeMap<K,V> {}
+impl<K, V> Objective for HashMap<K, V> {}
+impl<K, V> Objective for BTreeMap<K, V> {}
