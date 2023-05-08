@@ -49,12 +49,18 @@ demo
   (:export #:on-new-window
 	   #:start-ui)
   ;; tk.lisp
-  (:export #:random-id
-	   #:scan-dir
-	   #:mkstr
-	   #:symb
-	   #:sbq-reader
-	   #:find-rust-dll)
+  (:export
+   #:*cargo-target*
+   #:*rs-macros*
+   #:random-id
+   #:scan-dir
+   #:mkstr
+   #:symb
+   #:sbq-reader
+   #:rs-find-dll
+   #:rs-defmacro
+   #:rs-macroexpand-1
+   #:rs-macroexpand)
   ;; ffi.lisp
   ;; (:export)
   )

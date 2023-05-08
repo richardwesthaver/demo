@@ -5,6 +5,8 @@ This is a demo software suite which showcases the power of Common Lisp and Rust.
 * Run
 * Play
 * Config
-* COMMENT tasks
-** TODO proc_macros
+* tasks
 ** TODO ros scripts
+** TODO rs-macroexpand
+- rs-gen-file rs-defmacro rs-macros
+- rs-macroexpand-1

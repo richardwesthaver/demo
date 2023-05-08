@@ -14,5 +14,7 @@ exec ros -Q -- $0 "$@"
 
 (defun main (&rest argv)
   (declare (ignorable argv))
-  (uiop:run-program "cargo fmt"))
+  (write-line "> cargo fmt")
+  (uiop:run-program "cargo fmt")
+  (write-line "  formatted rust code"))
 ;;; vim: set ft=lisp lisp:

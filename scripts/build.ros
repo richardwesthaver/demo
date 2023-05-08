@@ -14,7 +14,10 @@ exec ros -Q -- $0 "$@"
 
 (defun main (&rest argv)
   (declare (ignorable argv))
+  (write-line "> cargo build --release")
+  (uiop:run-program "cargo build --release")
+  (wrie-line "  built rust libs and bindings")
   (asdf:load-asd "cl-demo.asd")
-  (asdf:load-system "cl-demo")
-  (asdf:make :cl-demo))
+  (asdf:load-system "demo")
+  (asdf:make :demo))
 ;;; vim: set ft=lisp lisp:

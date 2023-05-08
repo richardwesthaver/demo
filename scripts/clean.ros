@@ -16,5 +16,8 @@ exec ros -Q -- $0 "$@"			;
 (in-package :ros.script.clean.3891893753)
 
 (defun main (&rest argv)
-  (declare (ignorable argv)))
+  (declare (ignorable argv))
+  (write-line "> cargo clean")
+  (uiop:run-program "cargo clean")
+  (write-line "  cleaned rust crates"))
 ;;; vim: set ft=lisp lisp:

@@ -2,6 +2,8 @@
 
 (defvar *cargo-target* #P"/Users/ellis/dev/otom8/demo/target/")
 
+(defvar *rs-macros* nil)
+
 (defmacro rs-find-dll (name &optional debug)
   "Find the rust dll specified by NAME."
   (cond
@@ -13,7 +15,12 @@
 	 (uiop:run-program `("cargo" "build" ,(unless debug "--release")) :output t)
 	 `,(find-rust-dll name debug)))))
 
-(defmacro rs-macroexpand (env &body body)
+(defmacro rs-defmacro (args &body body)
+  "Define a macro which expands to a string of Rust code.")
+
+(defun rs-macroexpand-1 (form &optional env))
+
+(defun rs-macroexpand (env &rest body)
   "Cbindgen is quite the menace and really doesn't like our macros used
 to generate C FFI bindings. To compensate for this, we use a tool
 called cargo-expand by the most excellent dtolnay which expands Rust

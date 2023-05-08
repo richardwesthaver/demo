@@ -22,6 +22,7 @@
   :components ((:file "pkg")
 	       (:file "ffi")
 	       (:file "tk")
+	       (:file "cfg")
 	       (:file "db")
 	       (:file "ui")
 	       (:file "demo"))

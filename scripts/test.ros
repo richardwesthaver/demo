@@ -9,4 +9,6 @@ exec ros -Q -- $0 "$@"
 
 (defun main (&rest argv)
   (declare (ignorable argv))
-  (format t "hello world"))
+  (write-line "> cargo test")
+  (uiop:run-program "cargo test")
+  (write-line "  tested rust crates"))
