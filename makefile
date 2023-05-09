@@ -2,7 +2,7 @@ L ?= sbcl
 O ?= /tmp/demo
 .PHONY:build
 $(O):;mkdir -p $@
-clean:;rm -rf out *.fasl;cargo clean
+clean:;rm -rf *.fasl;scriipts/clean.ros
 fmt:;scripts/fmt.ros
 build:;scripts/build.ros
 docs:;scripts/docs.ros

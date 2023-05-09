@@ -1,5 +1,4 @@
 #+TITTLE: cl-demo
-
 This is a demo software suite which showcases the power of Common Lisp and Rust.
 * Make
 * Run
@@ -7,6 +6,24 @@ This is a demo software suite which showcases the power of Common Lisp and Rust.
 * Config
 * tasks
 ** TODO ros scripts
-** TODO rs-macroexpand
-- rs-gen-file rs-defmacro rs-macros
+** TODO DSLs
+- consider tree-sitter parsing layout, use as a guide for developing a
+  single syntax which expands to Rust or C.
+- with-rs
+- with-c
+- with-rs/c
+- with-cargo
+- compile-rs/c
+
+*** TODO rs-macroexpand
+- rs-gen-file
+- rs-defmacro
+- rs-macros
+- rs-macroexpand
 - rs-macroexpand-1
+*** TODO c-macroexpand
+- c-gen-file h/c
+- c-defmacro
+- c-macros
+- c-macroexpand
+- c-macroexpand-1
