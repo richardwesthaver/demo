@@ -1,5 +1,4 @@
 (in-package :demo)
-
 (defun on-new-window (body)
   "Handle new window event."
   (let ((elt (clog:create-child body "<h1>foobar</h1>")))

@@ -4,4 +4,8 @@
   (:win32 (:default "demo"))
   (t (:default "libdemo")))
 
-(use-foreign-library "./target/release/libdemo.dylib")
+(defun install-demo-lib (&optional path)
+  (if path
+      (use-foreign-library path)
+      (let ((path (rs-find-dll "libdemo.dylib")))
+	(use-foreign-library path))))
