@@ -1,13 +1,16 @@
 //! obj/src/types.rs --- OBJ type descriptions used by our demo
 use crate::{Deserialize, Objective, Result, Serialize};
+use std::collections::HashMap;
+
 /// APPLICATION TYPES
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize,Deserialize,Default)]
 pub enum Service {
   Weather,
   Stocks,
   Dynamic(Vec<Service>),
   Custom(CustomService),
-  Test,
+  #[default]
+  Bench,
 }
 
 impl Objective for Service {}
@@ -17,7 +20,7 @@ impl From<&str> for Service {
     match value {
       "weather" => Service::Weather,
       "stocks" => Service::Stocks,
-      "test" => Service::Test,
+      "bench" => Service::Bench,
       s => {
         if s.contains(",") {
           let x = s.split(",");
@@ -33,10 +36,12 @@ impl From<&str> for Service {
   }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize,Deserialize,Default)]
 pub struct CustomService {
   name: String,
+  registry: HashMap<String,Vec<u8>>,
 }
+
 impl Objective for CustomService {}
 impl From<CustomService> for Service {
   fn from(value: CustomService) -> Self {
@@ -46,14 +51,16 @@ impl From<CustomService> for Service {
 impl From<&str> for CustomService {
   fn from(value: &str) -> Self {
     let name = value.to_owned();
-    CustomService { name }
+    let registry = HashMap::new();
+    CustomService { name, registry }
   }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize,Default)]
 pub struct Complex<X: Objective> {
   data: X,
-  state: Vec<u8>,
+  stack: Vec<u8>,
+  registry: HashMap<String,Vec<u8>>,
 }
 
 impl Objective for Complex<Service> {}

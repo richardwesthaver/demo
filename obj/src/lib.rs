@@ -4,7 +4,11 @@ mod err;
 pub use err::{Error, Result};
 mod types;
 pub use types::*;
-
+pub mod id;
+pub mod auth;
+pub mod hash;
+pub mod network;
+pub mod database;
 pub use bincode;
 pub use ron;
 use ron::extensions::Extensions;
@@ -12,14 +16,6 @@ use serde::{de::DeserializeOwned, Deserialize, Serialize};
 pub use serde_json;
 use std::collections::{BTreeMap, HashMap};
 use std::io;
-
-/// common trait for all config modules. This trait provides functions
-/// for de/serializing to/from RON, updating fields, and formatting.
-pub trait Configure: Objective {
-  fn update(&self) -> Result<()> {
-    Ok(())
-  }
-}
 
 /// Objective trait
 /// Define Object behaviors, implemented by Objects
@@ -132,3 +128,22 @@ pub trait Objective {
 impl<T> Objective for Vec<T> {}
 impl<K, V> Objective for HashMap<K, V> {}
 impl<K, V> Objective for BTreeMap<K, V> {}
+impl Objective for std::path::PathBuf {}
+impl Objective for std::path::Path {}
+impl Objective for std::string::String {}
+impl Objective for std::any::TypeId {}
+impl Objective for u8 {}
+impl Objective for u16 {}
+impl Objective for u32 {}
+impl Objective for u64 {}
+impl Objective for u128 {}
+impl Objective for i8 {}
+impl Objective for i16 {}
+impl Objective for i32 {}
+impl Objective for i64 {}
+impl Objective for i128 {}
+impl Objective for isize {}
+impl Objective for usize {}
+impl Objective for f32 {}
+impl Objective for f64 {}
+

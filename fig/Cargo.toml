@@ -4,4 +4,5 @@ version = "0.1.0"
 edition = "2021"
 [dependencies]
 obj = {version = "0.1.0",path = "../obj"}
+serde = "1.0.163"
 serde_dhall = "0.12.1"

@@ -15,7 +15,14 @@
     :long-name "app"
     :initial-value "client"
     :env-vars '("DEMO_APP")
-    :key :app)))
+    :key :app)
+   (cli:make-option
+    :string
+    :description "path to config"
+    :short-name #\c
+    :long-name "config"
+    :initial-value "$DEMO_PATH/.fig"
+    :env-vars '("DEMO_CONFIG"))))
 
 (defun cli-handler (cmd)
   "Handler for the `demo' command."
