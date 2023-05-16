@@ -10,8 +10,8 @@
   :depends-on (:bordeaux-threads
 	       #+(or ccl sbcl)
 	       :clack
-	       :caveman2
 	       :clog
+	       :clog-web
 	       :cl-rocksdb
 	       :verbose
 	       :alexandria
