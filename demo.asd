@@ -11,7 +11,6 @@
 	       #+(or ccl sbcl)
 	       :clack
 	       :clog
-	       :clog-web
 	       :cl-rocksdb
 	       :verbose
 	       :alexandria

@@ -13,4 +13,5 @@ fn main() {
   cbindgen::generate(crate_dir)
     .expect("Unable to find cbindgen.toml configuration file")
     .write_to_file(build_dir.join("demo.h"));
+  
 }

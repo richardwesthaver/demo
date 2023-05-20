@@ -10,6 +10,12 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+#define KEY_LEN 32
+
+#define OUT_LEN 32
+
+#define OUT_LEN_HEX (OUT_LEN * 2)
+
 typedef struct CustomService CustomService;
 
 /**
