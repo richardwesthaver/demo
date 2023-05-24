@@ -1,11 +1,33 @@
 #+TITTLE: cl-demo
 This is a demo software suite which showcases the power of Common Lisp and Rust.
-* Make
-* Run
-* Play
-* Config
+* Guide
+** Build
+- *install dependencies*
+  - Rust =curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh=
+  - Common Lisp
+    - on Linux ::
+      - Ubuntu/Debian :: =sudo apt-get install sbcl=
+      - Arch BTW :: =sudo pacman -S sbcl=
+    - on MacOS :: =brew install sbcl=
+    - on Windows :: download from
+      <https://www.sbcl.org/platform-table.html> and figure it out.
+  - Quiche
+  - RocksDB
+- *make executables* \\
+  Simply run =make build=. Read the ~makefile~ and change the options
+  as needed.
+- M :: Mode (debug, release)
+- L :: Lisp (sbcl, cmucl, ccl)
+- P :: Python (python3, python2)
+** Run
+=./demo=
+** Config
+This demo features a novel configuration language inspired by
+FORTH. You are free to use ~.fig~ files, but also have the option to
+use a convention format (JSON,TOML,RON).
+** Play
+*** Weather
 * tasks
-** TODO ros scripts
 ** TODO DSLs
 - consider tree-sitter parsing layout, use as a guide for developing a
   single syntax which expands to Rust or C.
@@ -21,6 +43,7 @@ This is a demo software suite which showcases the power of Common Lisp and Rust.
 - rs-macros
 - rs-macroexpand
 - rs-macroexpand-1
+
 *** TODO c-macroexpand
 - c-gen-file h/c
 - c-defmacro

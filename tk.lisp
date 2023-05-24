@@ -23,6 +23,6 @@
      ,(funcall
        (get-macro-character #\`) stream nil)))
 
-(eval-when (:execute)
+(eval-when (:load-toplevel)
   (set-dispatch-macro-character
    #\# #\` #'demo:sbq-reader))

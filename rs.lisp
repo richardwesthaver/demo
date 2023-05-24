@@ -1,8 +1,21 @@
 ;;; RUST DSL
+
+;; So basically, this was born out of personal frustration with how
+;; cbindgen and Rust macros work (they don't). Rust macros in general
+;; are something of a pain in my opinion, so I thought why not just
+;; generate Rust code from Lisp instead?
+
 (in-package :demo)
 
 (defvar *cargo-target* #p"/Users/ellis/dev/otom8/demo/target/")
 (defvar *rs-macros* nil)
+
+;; TODO gensyms
+(defmacro rs-defmacro (name args &body body)
+  "Define a macro which can be used within the body of a 'with-rs' form."
+  `(prog1
+       (defmacro ,name ,@(mapcar #`(,a1) args) ,@body)
+     (push ',name *rs-macros*)))
 
 (defun rs-mod-form (crate &optional mods pub)
   "Generate a basic mod form (CRATE . [MODS] [PUB])"
@@ -61,10 +74,5 @@
 ;; (defun rs-macroexpand-1 (form &optional env))
 
 ;; (defun rs-macroexpand (env &rest body)
-;;   "Cbindgen is quite the menace and really doesn't like our macros used
-;; to generate C FFI bindings. To compensate for this, we use a tool
-;; called cargo-expand by the most excellent dtolnay which expands Rust
-;; macros. The expansions are assembled into an equivalent Rust source
-;; file which cbindgen won't get stuck in an infinite compile loop on.")
 
 ;;; 
