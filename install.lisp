@@ -1,5 +1,5 @@
 (asdf:load-asd "demo.asd")
 (ql:quickload :demo)
 ;; (asdf:make :demo)
-(save-lisp-and-die "demo")
+(save-lisp-and-die "demo" :toplevel #'demo:main)
 (quit)
