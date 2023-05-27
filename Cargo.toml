@@ -4,9 +4,9 @@ version = "0.1.0"
 build = "build.rs"
 [lib]
 path = "lib.rs"
-crate-type = ["lib","cdylib","staticlib"]
+crate-type = ["rlib","cdylib"]
 [workspace]
-members = ["obj","fig"]
+members = ["obj","fig","ui"]
 [dependencies]
 libc = "0.2"
 obj = {version = "0.1.0",path = "obj"}
