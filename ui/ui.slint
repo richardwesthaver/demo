@@ -1,0 +1,18 @@
+import {CheckBox, StandardListView, StyleMetrics} from "std-widgets.slint";
+import {AboutPage, ControlsPage, ListViewPage, TableViewPage, TableViewPageAdapter, TextEditPage} from "pages.slint";
+import {UiConfig} from "config.slint";
+import {SideBar} from "sidebar.slint";
+export {TableViewPageAdapter}
+export component App inherits Window {
+  title: "Demo";
+  icon: @image-url("img/treez.png");
+  HorizontalLayout {
+    side-bar := SideBar {
+      title: "Demo";
+      model: ["Controls", "ListView", "About"];
+    }
+    if(side-bar.current-item == 0) : ControlsPage {}
+    if(side-bar.current-item == 1) : ListViewPage {}
+    if(side-bar.current-item == 2) : AboutPage {}
+  }
+}
