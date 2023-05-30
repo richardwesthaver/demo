@@ -5,7 +5,7 @@ RS:Cargo.toml build.rs lib.rs obj fig
 CL:*.asd *.lisp
 clean:;rm -rf *.fasl;cargo clean
 fmt:$(RS);cargo fmt
-build:$(RS) $(CL);cargo build --$(M);$L install.lisp
+build:$(RS) $(CL);cargo build --$(M);$L --script install.lisp
 ffi:build;cp target/$(M)/libdemo.dylib ffi;cd ffi;$(P) ffi/build.py
 docs:$(RS);cargo doc
 test:$(RS) $(CL);cargo test;$L tests.lisp

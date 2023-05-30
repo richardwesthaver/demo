@@ -11,7 +11,7 @@
 	       #+(or ccl sbcl)
 	       :clack
 	       :clog
-	       :cl-rocksdb
+;;	       :cl-rocksdb
 	       :verbose
 	       :alexandria
 	       :cl-ppcre
@@ -19,16 +19,16 @@
 	       :clingon)
   :serial T
   :components ((:file "pkg")
-	       (:file "ffi")
+;;	       (:file "ffi")
 	       (:file "tk")
 	       (:file "cfg")
-	       (:file "db")
+;;	       (:file "db")
 	       (:file "ui")
 	       (:file "demo"))
   ;; :in-order-to ((test-op (test-op "demo/tests")))
   ;; :defsystem-depends-on (:deploy)
   ;; :build-operation "deploy"
-  :build-pathname "demo"
+  :build-pathname "out/demo"
   :entry-point "demo:main")
 
 ;; (asdf:defsystem "cl-demo:tests"

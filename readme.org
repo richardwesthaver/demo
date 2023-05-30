@@ -20,13 +20,26 @@ This is a demo software suite which showcases the power of Common Lisp and Rust.
 - L :: Lisp (sbcl, cmucl, ccl)
 - P :: Python (python3, python2)
 ** Run
-=./demo=
+#+begin_src shell
+  make build
+  ./out/demo
+#+end_src
 ** Config
 This demo features a novel configuration language inspired by
 FORTH. You are free to use ~.fig~ files, but also have the option to
 use a convention format (JSON,TOML,RON).
 ** Play
+The user interface is presented as a multi-modal GUI application which
+adapts to the backends below.
 *** Weather
+This backend retrieves weather data using the NWS API.
+*** Stocks
+The 'Stocks' backend features a stock ticker with real-time analysis
+capabilities.
+*** Bench
+This is a benchmark backend for testing the capabilities of our
+demo. It spins up some mock services and allows fine-grained control
+of input/throughput.
 * tasks
 ** TODO DSLs
 - consider tree-sitter parsing layout, use as a guide for developing a
@@ -36,17 +49,27 @@ use a convention format (JSON,TOML,RON).
 - with-rs/c
 - with-cargo
 - compile-rs/c
-
 *** TODO rs-macroexpand
 - rs-gen-file
 - rs-defmacro
 - rs-macros
 - rs-macroexpand
 - rs-macroexpand-1
-
 *** TODO c-macroexpand
 - c-gen-file h/c
 - c-defmacro
 - c-macros
 - c-macroexpand
 - c-macroexpand-1
+*** TODO slint-macroexpand
+- slint-gen-file
+- slint-defmacro
+- slint-macros
+- slint-macroexpand
+- slint-macroexpand-1
+*** TODO fig-macroexpand
+- fig-gen-file
+- fig-defmacro
+- fig-macros
+- fig-macroexpand
+- fig-macroexpand-1

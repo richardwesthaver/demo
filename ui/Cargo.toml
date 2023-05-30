@@ -13,7 +13,6 @@ path = "main.rs"
 slint-build = "1.0.2"
 [dependencies]
 obj = {version = "0.1.0",path = "../obj"}
-fig = {version = "0.1.0",path = "../fig"}
 env_logger = "0.10.0"
 log = "0.4.17"
 slint = "1.0.2"

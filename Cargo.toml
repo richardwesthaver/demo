@@ -6,10 +6,9 @@ build = "build.rs"
 path = "lib.rs"
 crate-type = ["rlib","cdylib"]
 [workspace]
-members = ["obj","fig","ui"]
+members = ["obj","ui"]
 [dependencies]
 libc = "0.2"
 obj = {version = "0.1.0",path = "obj"}
-fig = {version = "0.1.0",path = "fig"}
 [build-dependencies]
 cbindgen = "0.24.3"
