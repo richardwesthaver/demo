@@ -6,5 +6,7 @@
     (load quicklisp-init)))
 (load "demo.asd")
 (ql:quickload :demo)
+;; (asdf:load-asd "cl-demo.asd")
+;; (asdf:load-system "demo")
 ;; (asdf:make :demo)
 (sb-ext:save-lisp-and-die "out/demo" :toplevel #'demo:main :executable t)

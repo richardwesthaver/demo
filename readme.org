@@ -25,12 +25,11 @@ This is a demo software suite which showcases the power of Common Lisp and Rust.
   ./out/demo
 #+end_src
 ** Config
-This demo features a novel configuration language inspired by
-FORTH. You are free to use ~.fig~ files, but also have the option to
-use a convention format (JSON,TOML,RON).
+Configs can be specified in JSON, TOML, RON, or of course SEXP.
 ** Play
-The user interface is presented as a multi-modal GUI application which
-adapts to the backends below.
+The high-level user interface is presented as a multi-modal GUI
+application which adapts to the specific application /instances/
+below.
 *** Weather
 This backend retrieves weather data using the NWS API.
 *** Stocks
@@ -67,9 +66,14 @@ of input/throughput.
 - slint-macros
 - slint-macroexpand
 - slint-macroexpand-1
-*** TODO fig-macroexpand
-- fig-gen-file
-- fig-defmacro
-- fig-macros
-- fig-macroexpand
-- fig-macroexpand-1
+*** TODO html (using who)
+** TODO web templates
+create a basic static page in CL which will be used to host Slint UIs
+and other WASM doo-dads in a browser.
+** TODO CLI
+using clingon, decide on generic options and write it up
+** TODO docs
+work on doc generation -- Rust and CL should be accounted for.
+** TODO tests
+We have none! need to make it more comfy - set up testing in all Rust
+crates and for the lisp systems.
