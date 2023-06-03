@@ -1,0 +1,20 @@
+* research
+** [[https://github.com/screenshotbot/screenshotbot-oss][screenshotbot-oss]]
+- monolithic repo, includes third-party dependencies
+  - full quicklisp source
+  - asdf, etc
+- addresses many of my concerns about running CL in prod
+- the repo is too heavy for my liking though
+- I do like the idea of having many systems though
+** DB
+*** [[https://github.com/fukamachi/mito][mito]]
+ORM, sqlite, postgres, mysql support
+*** [[https://github.com/fukamachi/cl-dbi][cl-dbi]]
+database independent interface
+*** [[https://github.com/fukamachi/sxql][sxql]]
+SQL generator
+** LOGGING
+*** [[https://github.com/sharplispers/log4cl/][log4cl]]
+supports slime
+** UI
+[[https://mcclim.common-lisp.dev/][mcclim]]

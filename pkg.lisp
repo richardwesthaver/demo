@@ -2,7 +2,7 @@
 demo
 > (demo:main)
 |#
-(defpackage #:demo
+(defpackage :demo
   (:use #:cl #:cffi)
   (:local-nicknames
    ;;   (#:rdb #:cl-rocksdb)
