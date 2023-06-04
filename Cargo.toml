@@ -1,14 +1,2 @@
-[package]
-name = "demo"
-version = "0.1.0"
-build = "build.rs"
-[lib]
-path = "lib.rs"
-crate-type = ["rlib","cdylib"]
 [workspace]
-members = ["obj","ui"]
-[dependencies]
-libc = "0.2"
-obj = {version = "0.1.0",path = "obj"}
-[build-dependencies]
-cbindgen = "0.24.3"
+members = ["src/crates/obj","src/crates/ui"]

@@ -31,13 +31,8 @@
   :build-pathname "demo"
   :entry-point "demo:main")
 
-;; (asdf:defsystem "cl-demo:tests"
-  ;; :depends-on ("cl-demo" "fiveam")
+;; (asdf:defsystem "demo.tests"
+  ;; :depends-on ("demo" "fiveam")
   ;; :components ((:file "tests"))
-  ;; :perform (test-op (o c) (symbol-call :fiveam '#:run! :cl-demo))
+  ;; :perform (test-op (o c) (symbol-call :fiveam '#:run! "demo:main"))
   ;; )
-
-;; (deploy:define-library cl+ssl::libssl
-;;   :path "/usr/local/Cellar/openssl@3/3.1.1/lib/libssl.dylib")
-;; (deploy:define-library cl+ssl::libcrypto
-;;   :path "/usr/local/Cellar/openssl@3/3.1.1/lib/libcrypto.dylib")

@@ -1,7 +1,4 @@
-#|
-demo
-> (demo:main)
-|#
+;; demo package.lisp
 (defpackage :demo
   (:use #:cl #:cffi)
   (:local-nicknames
@@ -75,4 +72,4 @@ demo
   ;;  #:install-demo-lib
   ;;  #:install-quiche-lib
   ;;  #:install-rocksdb-lib)
-  )
+)

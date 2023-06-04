@@ -1,5 +1,22 @@
-#+TITTLE: cl-demo
-This is a demo software suite which showcases the power of Common Lisp and Rust.
+#+TITTLE: Demo
+Welcome to our first demo system. What you will find here is a modular
+client-server software stack which can be extended and customized by
+the user at runtime.
+
+* How it works
+The backend services are written in Rust and controlled by a simple
+messaging protocol. Services provide common runtime capabilities known
+as the /core protocol/ but are specialized on a unique /service type/
+which may in turn register their own /custom protocols/ (via core).
+
+Services are capable of dispatching data directly to clients, or
+storing data in the /database/ (TBD).
+
+The frontend clients are pre-dominantly written in Common Lisp and
+come in many shapes and sizes. There is a cli-client, web-client
+(CLOG), docker-client (archlinux, stumpwm, McCLIM), and native-client
+which also compiles to WASM (slint-rs).
+
 * Guide
 ** Build
 - *install dependencies*
@@ -11,21 +28,19 @@ This is a demo software suite which showcases the power of Common Lisp and Rust.
     - on MacOS :: =brew install sbcl=
     - on Windows :: download from
       <https://www.sbcl.org/platform-table.html> and figure it out.
-  - Quiche
-  - RocksDB
 - *make executables* \\
   Simply run =make build=. Read the ~makefile~ and change the options
   as needed.
 - M :: Mode (debug, release)
 - L :: Lisp (sbcl, cmucl, ccl)
-- P :: Python (python3, python2)
+- C :: Config (default.cfg)
 ** Run
 #+begin_src shell
-  make build
-  ./out/demo
+  ./demo -i
 #+end_src
 ** Config
-Configs can be specified in JSON, TOML, RON, or of course SEXP.
+Configs can be specified in JSON, TOML, RON, or of course SEXP. See
+=default.cfg= for an example.
 ** Play
 The high-level user interface is presented as a multi-modal GUI
 application which adapts to the specific application /instances/
