@@ -1,3 +1,8 @@
+* ideas
+** use branches for separate levels of expansion
+- or perhaps some other VC feature.. although I don't want any
+  parallel to time, as if expansions occur in sequence. Thus things
+  like tags don't feel quite right.
 * research
 ** [[https://github.com/screenshotbot/screenshotbot-oss][screenshotbot-oss]]
 - monolithic repo, includes third-party dependencies
@@ -7,14 +12,23 @@
 - the repo is too heavy for my liking though
 - I do like the idea of having many systems though
 ** DB
-*** [[https://github.com/fukamachi/mito][mito]]
+*** CLIENT
+**** [[https://github.com/fukamachi/mito][mito]]
 ORM, sqlite, postgres, mysql support
-*** [[https://github.com/fukamachi/cl-dbi][cl-dbi]]
+**** [[https://github.com/fukamachi/cl-dbi][cl-dbi]]
 database independent interface
-*** [[https://github.com/fukamachi/sxql][sxql]]
+**** [[https://github.com/fukamachi/sxql][sxql]]
 SQL generator
+*** SERVICE
+**** [[https://github.com/launchbadge/sqlx][sqlx]]
+- supports rustls, tokio
+- we should write the service queries using a common-lisp DSL!
+  #+begin_src toml
+    sqlx = { version = "0.7", features = [ "runtime-tokio", "tls-rustls", "any", "chrono" ] }
+  #+end_src
 ** LOGGING
 *** [[https://github.com/sharplispers/log4cl/][log4cl]]
-supports slime
+supports slime well
 ** UI
 [[https://mcclim.common-lisp.dev/][mcclim]]
+
