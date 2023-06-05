@@ -4,6 +4,7 @@
   parallel to time, as if expansions occur in sequence. Thus things
   like tags don't feel quite right.
 * research
+for libraries, always prefer [[https://common-lisp-libraries.readthedocs.io/][defacto libs]]
 ** [[https://github.com/screenshotbot/screenshotbot-oss][screenshotbot-oss]]
 - monolithic repo, includes third-party dependencies
   - full quicklisp source
@@ -27,8 +28,14 @@ SQL generator
     sqlx = { version = "0.7", features = [ "runtime-tokio", "tls-rustls", "any", "chrono" ] }
   #+end_src
 ** LOGGING
-*** [[https://github.com/sharplispers/log4cl/][log4cl]]
+*** CLIENT
+**** [[https://github.com/sharplispers/log4cl/][log4cl]]
 supports slime well
+*** SERVICE
+**** [[https://crates.io/crates/tracing][tracing]]
+**** [[https://crates.io/crates/tokio-console][tokio-console]] - monitoring tool
+works with tracing using the [[https://crates.io/crates/console-subscriber][console-subscriber]] crate
 ** UI
 [[https://mcclim.common-lisp.dev/][mcclim]]
-
+[[https://slint-ui.com/][slint-ui]]
+[[https://github.com/rabbibotton/clog][clog]]

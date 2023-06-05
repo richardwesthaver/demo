@@ -1,7 +1,7 @@
-;; demo.lisp
-(in-package :demo)
+;; cli.lisp
+(in-package :demo-cli)
 
-(defparameter demo-path (merge-pathnames "cl-demo" (uiop:temporary-directory)))
+(defparameter demo-path (merge-pathnames "demo" (uiop:temporary-directory)))
 
 (defvar db-path (merge-pathnames "db" demo-path))
 
@@ -40,6 +40,6 @@
    :options (cli-opts)
    :handler #'cli-handler))
 
-(defun main ()
+(defun run-cli ()
   "A demo of some common-lisp functionality."
   (cli:run (cli-cmd)))

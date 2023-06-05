@@ -1,2 +1,2 @@
 [workspace]
-members = ["src/crates/obj","src/crates/ui"]
+members = ["src/crates/obj","src/crates/ui","src/crates/service"]
