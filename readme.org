@@ -6,11 +6,12 @@ the user at runtime.
 * How it works
 The backend services are written in Rust and controlled by a simple
 messaging protocol. Services provide common runtime capabilities known
-as the /core protocol/ but are specialized on a unique /service type/
-which may in turn register their own /custom protocols/ (via core).
+as the /service protocol/ but are specialized on a unique /service
+type/ which may in turn register their own /custom protocols/ (via
+core).
 
 Services are capable of dispatching data directly to clients, or
-storing data in the /database/ (TBD).
+storing data in the /database/ (sqlite, postgres, mysql).
 
 The frontend clients are pre-dominantly written in Common Lisp and
 come in many shapes and sizes. There is a cli-client, web-client
@@ -20,6 +21,9 @@ which also compiles to WASM (slint-rs).
 * Guide
 ** Build
 - *install dependencies*
+  #+begin_src bash
+    ./tools/deps.sh
+  #+end_src
   - Rust =curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh=
   - Common Lisp
     - on Linux ::

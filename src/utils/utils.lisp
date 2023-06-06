@@ -1,4 +1,4 @@
-(in-package :demo)
+(in-package :demo-utils)
 
 (defun mkstr (&rest args)
   (with-output-to-string (s)
@@ -25,4 +25,4 @@
 
 (eval-when (:load-toplevel)
   (set-dispatch-macro-character
-   #\# #\` #'demo:sbq-reader))
+   #\# #\` #'sbq-reader))

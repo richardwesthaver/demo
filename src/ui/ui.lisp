@@ -1,4 +1,4 @@
-(in-package :demo)
+(in-package :demo-ui)
 
 (defparameter ui-server-port 8080)
 (defparameter ui-server-host "0.0.0.0")

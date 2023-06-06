@@ -5,7 +5,7 @@
 ;; are something of a pain in my opinion, so I thought why not just
 ;; generate Rust code from Lisp instead?
 
-(in-package :demo)
+(in-package :demo-utils)
 
 (defvar *cargo-target* #p"/Users/ellis/dev/otom8/demo/target/")
 (defvar *rs-macros* nil)
