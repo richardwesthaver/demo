@@ -1,6 +1,6 @@
-M?=release
-L?=sbcl
-C?=default.cfg
+MODE?=release
+LISP?=sbcl
+CFG?=default.cfg
 L_C=$(L) --no-userinit
 L_D=$(L) --load demo.asd --eval '(ql:quickload "demo")'
 L_S=$(L) --script
@@ -12,7 +12,7 @@ CL:*/*.asd */*.lisp
 deps:;
 clean:;rm -rf *.fasl;cargo clean
 fmt:$(RS);cargo fmt
-build:$(RS) $(CL);cargo build --$(M);$(L_D)
+build:$(RS) $(CL);cargo build --$(MODE);$(L_D)
 	--eval '(asdf:make "demo")' \
 	--eval '(quit)'
 docs:$(RS);cargo doc

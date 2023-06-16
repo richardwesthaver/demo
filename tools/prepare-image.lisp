@@ -4,9 +4,9 @@
 #+sbcl
 (require 'sb-introspect)
 
-(when (probe-file "scripts/asdf.lisp")
+(when (probe-file "tools/asdf.lisp")
   (format t "Compiling asdf..~%")
-  (let ((output (compile-file "scripts/asdf.lisp" :verbose nil :print nil)))
+  (let ((output (compile-file "tools/asdf.lisp" :verbose nil :print nil)))
     (load output))
   (provide "asdf"))
 
@@ -108,6 +108,7 @@
 #+nil
 (ql:update-all-dists :prompt nil)
 
+;; is the package name already loaded as a feature? uhh look it up
 (pushnew :demo *features*)
 
 (defun update-project-directories (cwd)
