@@ -3,7 +3,7 @@ use crate::{Deserialize, Objective, Result, Serialize};
 use std::collections::HashMap;
 
 /// APPLICATION TYPES
-#[derive(Serialize,Deserialize,Default)]
+#[derive(Serialize, Deserialize, Default)]
 pub enum Service {
   Weather,
   Stocks,
@@ -36,10 +36,10 @@ impl From<&str> for Service {
   }
 }
 
-#[derive(Serialize,Deserialize,Default)]
+#[derive(Serialize, Deserialize, Default)]
 pub struct CustomService {
   name: String,
-  registry: HashMap<String,Vec<u8>>,
+  registry: HashMap<String, Vec<u8>>,
 }
 
 impl Objective for CustomService {}
@@ -56,11 +56,11 @@ impl From<&str> for CustomService {
   }
 }
 
-#[derive(Serialize, Deserialize,Default)]
+#[derive(Serialize, Deserialize, Default)]
 pub struct Complex<X: Objective> {
   data: X,
   stack: Vec<u8>,
-  registry: HashMap<String,Vec<u8>>,
+  registry: HashMap<String, Vec<u8>>,
 }
 
 impl Objective for Complex<Service> {}

@@ -1,9 +1,9 @@
-use std::{fmt, str::FromStr};
-use serde::{Serialize, Deserialize};
-pub use uuid::Uuid;
-pub use ulid::Ulid;
+use crate::hash::{B3Hasher, KEY_LEN, OUT_LEN};
 use rand::Rng;
-use crate::hash::{KEY_LEN,OUT_LEN,B3Hasher};
+use serde::{Deserialize, Serialize};
+use std::{fmt, str::FromStr};
+pub use ulid::Ulid;
+pub use uuid::Uuid;
 /// a simple Id abstraction
 #[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Debug, Serialize, Deserialize, Hash)]
 pub struct Id(pub Vec<u8>);

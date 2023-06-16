@@ -1,6 +1,6 @@
-use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-use tokio::net::TcpListener;
 use sqlx::postgres::{PgPool, PgPoolOptions};
+use tokio::net::TcpListener;
+use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 #[tokio::main]
 async fn main() {

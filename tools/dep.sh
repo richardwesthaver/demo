@@ -1,5 +1,6 @@
 #!/usr/bin/sh
 # install demo build dependencies
+# *based on rustup.sh
 set -u
 PKG_URL_ROOT="${PKG_URL_ROOT:-https://rwest.io/otom8/packy/bundle}"
 PKG_NAME="demo_build_deps"
@@ -342,13 +343,12 @@ main () {
                 ;;
         esac
     done
-
     if $_ansi_escapes_are_valid; then
-        printf "\33[1minfo:\33[0m downloading $PKG_NAME\n" 1>&2
+        printf '%s ' "\33[1minfo:\33[0m downloading from::" 1>&2
     else
-        printf '%s\n' 'info: downloading $PKG_NAME' 1>&2
+        printf '%s ' 'info: downloading from::' 1>&2
     fi
-
+    printf '%s\n' $_url 1>&2
     ensure mkdir -p "$_dir"
     ensure dl "$_url" "$_file" "$_arch"
     ensure chmod u+x "$_file"

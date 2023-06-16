@@ -4,11 +4,11 @@ mod err;
 pub use err::{Error, Result};
 mod types;
 pub use types::*;
-pub mod id;
 pub mod auth;
-pub mod hash;
-pub mod network;
 pub mod database;
+pub mod hash;
+pub mod id;
+pub mod network;
 pub use bincode;
 pub use ron;
 use ron::extensions::Extensions;
@@ -146,4 +146,3 @@ impl Objective for isize {}
 impl Objective for usize {}
 impl Objective for f32 {}
 impl Objective for f64 {}
-

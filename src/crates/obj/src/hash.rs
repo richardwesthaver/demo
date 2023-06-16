@@ -12,8 +12,8 @@ pub const OUT_LEN_HEX: usize = OUT_LEN * 2;
 
 #[cfg(test)]
 mod tests {
-  use crate::*;
   use super::*;
+  use crate::*;
   #[test]
   fn id_state_hash() {
     let id = id::Id(vec![0; KEY_LEN]);
