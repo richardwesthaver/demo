@@ -1,2 +1,2 @@
-(load "tools/prepare-image")
-(load "tools/init")
+(defparameter *cwd* (asdf:system-source-directory :demo))
+(load (merge-pathnames "tools/build-image.lisp" *cwd*))

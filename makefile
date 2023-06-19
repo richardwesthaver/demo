@@ -1,3 +1,4 @@
+# otom8/demo makefile
 MODE?=release
 LISP?=sbcl
 CFG?=default.cfg
@@ -10,7 +11,7 @@ A_C=ifeq ($(ARCH),x86_64) A_C=arch -$(ARCH) endif
 RS:Cargo.toml rustfmt.toml src/crates/*
 CL:*/*.asd */*.lisp
 deps:;
-clean:;rm -rf *.fasl;cargo clean
+clean:;rm -rf */*.fasl;cargo clean
 fmt:$(RS);cargo fmt
 build:$(RS) $(CL);cargo build --$(MODE);$(L_D)
 	--eval '(asdf:make "demo")' \

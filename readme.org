@@ -24,20 +24,12 @@ which also compiles to WASM (slint-rs).
   #+begin_src bash
     ./tools/deps.sh
   #+end_src
-  - Rust =curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh=
-  - Common Lisp
-    - on Linux ::
-      - Ubuntu/Debian :: =sudo apt-get install sbcl=
-      - Arch BTW :: =sudo pacman -S sbcl=
-    - on MacOS :: =brew install sbcl=
-    - on Windows :: download from
-      <https://www.sbcl.org/platform-table.html> and figure it out.
 - *make executables* \\
   Simply run =make build=. Read the ~makefile~ and change the options
   as needed.
-- M :: Mode (debug, release)
-- L :: Lisp (sbcl, cmucl, ccl)
-- C :: Config (default.cfg)
+- MODE :: Mode (debug, release)
+- LISP :: Lisp (sbcl, cmucl, ccl)
+- CFG :: Config (default.cfg)
 ** Run
 #+begin_src shell
   ./demo -i

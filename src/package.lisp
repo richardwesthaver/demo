@@ -1,9 +1,7 @@
 ;; demo packages.lisp
-(defpackage :demo-sys
-  (:nicknames :ds))
+(defpackage :demo-sys)
 (defpackage :demo-utils
   (:use :demo-sys)
-  (:nicknames :dutils)
   (:export
    #:source-dir
    #:random-id
@@ -19,13 +17,11 @@
   (:nicknames :ddb))
 (defpackage :demo-ui
   (:use :demo-sys)
-  (:nicknames :dui)
   (:export
    #:on-new-window
    #:start-ui))
 (defpackage :demo-cli
   (:use :demo-sys)
-  (:nicknames :dcli)
   (:export
    #:run-cli
    #:demo-path
@@ -35,9 +31,7 @@
    #:cli-cmd))
 (defpackage :demo
   (:use #:cl #:demo-sys #:demo-utils #:demo-db #:demo-ui #:demo-cli)
-  (:nicknames :d)
   (:local-nicknames
-   (#:v #:org.shirakumo.verbose)
    (#:bt #:bordeaux-threads)
    (#:cli #:clingon)))
 (defpackage :demo-user

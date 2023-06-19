@@ -1,9 +1,4 @@
 ;;; demo.asd
-(in-package #:asdf-user)
-
-(defsystem "demo/sys"
-  :components ((:file "src/package")))
-
 (defsystem "demo"
   :version "0.1.0"
   :author "ellis <ellis@rwest.io>"
@@ -13,9 +8,12 @@
   :bug-tracker "https://lab.rwest.io/otom8/demo/issues"
   :source-control (:hg "https://lab.rwest.io/otom8/demo")
   :license "WTFPL"
-  :depends-on ("demo/sys" :cl-dbi :sxql :log4cl :verbose :bordeaux-threads :clingon :clog)
+  :depends-on (:log4cl :bordeaux-threads :clingon :clog)
   :in-order-to ((test-op (test-op "src/test")))
-  :build-pathname "demo")
+  :build-pathname "demo"
+  :components ((:module "src"
+		:components ((:file "package")
+			     (:file "cfg")))))
 
 (defmethod perform :after ((op load-op) (c (eql (find-system :demo))))
   (pushnew :demo *features*))
