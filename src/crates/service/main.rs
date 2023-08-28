@@ -1,4 +1,4 @@
-use sqlx::postgres::{PgPool, PgPoolOptions};
+
 use tokio::net::TcpListener;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 

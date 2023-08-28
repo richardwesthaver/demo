@@ -3,23 +3,29 @@
   :version "0.1.0"
   :author "ellis <ellis@rwest.io>"
   :maintainer "ellis <ellis@rwest.io>"
-  :description ""
-  :homepage "https://rwest.io/p/demo"
+  :description "comp demo system"
+  :homepage "https://rwest.io/demo"
   :bug-tracker "https://lab.rwest.io/otom8/demo/issues"
   :source-control (:hg "https://lab.rwest.io/otom8/demo")
-  :license "WTFPL"
-  :depends-on (:log4cl :bordeaux-threads :clingon :clog)
-  :in-order-to ((test-op (test-op "src/test")))
-  :build-pathname "demo"
-  :components ((:module "src"
-		:components ((:file "package")
-			     (:file "cfg")))))
+  :license "WTF"
+  :depends-on (:sxp :log4cl :bordeaux-threads :clog)
+  :in-order-to ((test-op (test-op "demo/tests")))
+  :components ((:file "src/package")
+	       (:file "src/cfg")))
 
 (defmethod perform :after ((op load-op) (c (eql (find-system :demo))))
   (pushnew :demo *features*))
 
+(defsystem "demo/cli"
+  :depends-on ("demo" "clingon")
+  :components ((:module "src/cli"
+		:components ((:file "cli"))))
+  :in-order-to ((test-op (test-op "demo/tests")))
+  :build-operation "program-op"
+  :build-pathname "bin/demo")
+
 (defsystem "demo/tests"
-  :depends-on ("demo" "fiveam")
+  :depends-on ("demo" "demo-cli" "fiveam")
   :components ((:module "src/tests"
 		:serial t
 		:components

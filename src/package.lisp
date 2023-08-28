@@ -1,38 +1,36 @@
 ;; demo packages.lisp
-(defpackage :demo-sys)
+
+(defpackage :demo-core
+  (:use :cl))
+
 (defpackage :demo-utils
-  (:use :demo-sys)
+  (:use :demo-core)
   (:export
    #:source-dir
    #:random-id
-   #:scan-dir)
-  (:export
+   #:scan-dir
    #:*cargo-target*
    #:*rs-macros*
    #:rs-defmacro
    #:rs-macroexpand-1
    #:rs-macroexpand))
+
 (defpackage :demo-db
-  (:use :demo-sys)
-  (:nicknames :ddb))
+  (:use :demo-core))
+
 (defpackage :demo-ui
-  (:use :demo-sys)
+  (:use :demo-core)
   (:export
    #:on-new-window
    #:start-ui))
-(defpackage :demo-cli
-  (:use :demo-sys)
-  (:export
-   #:run-cli
-   #:demo-path
-   #:db-path
-   #:cli-opts
-   #:cli-handler
-   #:cli-cmd))
+
 (defpackage :demo
-  (:use #:cl #:demo-sys #:demo-utils #:demo-db #:demo-ui #:demo-cli)
+  (:use #:cl #:demo-core #:demo-utils #:demo-db #:demo-ui)
   (:local-nicknames
-   (#:bt #:bordeaux-threads)
-   (#:cli #:clingon)))
+   (#:bt #:bordeaux-threads)))
+
+(defpackage :demo-cli
+  (:use :demo :clingon))
+
 (defpackage :demo-user
-  (:use :demo #:cl-user))
+  (:use :demo))

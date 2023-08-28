@@ -8,7 +8,7 @@
 (defun cli-opts ()
   "Returns the top-level CLI options."
   (list
-   (cli:make-option
+   (clingon:make-option
     :string
     :description "demo app to run"
     :short-name #\x
@@ -16,7 +16,7 @@
     :initial-value "client"
     :env-vars '("DEMO_APP")
     :key :app)
-   (cli:make-option
+   (clingon:make-option
     :string
     :description "path to config"
     :short-name #\c
@@ -26,12 +26,12 @@
 
 (defun cli-handler (cmd)
   "Handler for the `demo' command."
-  (let ((app (cli:getopt cmd :app)))
+  (let ((app (clingon:getopt cmd :app)))
     (format t "running: ~A!~%" app)))
 
 (defun cli-cmd ()
   "Our demo command."
-  (cli:make-command
+  (clingon:make-command
    :name "demo"
    :description "A collection of demos"
    :version "1.0.0"
@@ -42,4 +42,4 @@
 
 (defun run-cli ()
   "A demo of some common-lisp functionality."
-  (cli:run (cli-cmd)))
+  (clingon:run (cli-cmd)))
