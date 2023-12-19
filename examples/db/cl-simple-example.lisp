@@ -13,6 +13,10 @@ sbcl --eval '(ql:quickload :rdb)' \
      --eval "(sb-ext:save-lisp-and-die \"cl-simple-example\" :toplevel #'cl-simple-example::main :executable t)"
 
 time ./cl-simple-example
+
+# real	0m0.030s
+# user	0m0.012s
+# sys	0m0.017s
 |#
 
 ;; Compare to C:
@@ -21,6 +25,10 @@ time ./cl-simple-example
 gcc -lrocksdb c_simple_example.c -oc_simple_example
 
 time ./c_simple_example
+
+# real	0m0.021s
+# user	0m0.006s
+# sys	0m0.015s
 |#
 
 ;;; Code:
