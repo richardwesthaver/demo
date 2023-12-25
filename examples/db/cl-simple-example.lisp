@@ -1,4 +1,4 @@
-;;; cl-simple-example.lisp --- Common Lisp port of rocksdb/example/c_simple_example.c
+;;; cl-simple-example.lisp --- Common Lisp port of rocksdb/examples/c_simple_example.c
 
 ;; ref: https://github.com/facebook/rocksdb/blob/main/examples/c_simple_example.c
 
@@ -32,18 +32,14 @@ time ./c_simple_example
 |#
 
 ;;; Code:
-(defpackage :examples/rdb/cl-simple-example
-  (:nicknames :cl-simple-example)
+(defpackage :examples/cl-simple-example
   (:use :cl :std :cli :rdb :sb-alien :rocksdb)
   (:export :main))
 
-(rocksdb:load-rocksdb :save t)
+(in-package :exmaples/cl-simple-example)
+(declaim (optimize (speed 3)))
 
-(in-package :cl-simple-example)
-
-(in-readtable :std)
-
-(defvar *num-cpus* (alien-funcall (extern-alien "sysconf" (function long integer)) sb-unix:sc-nprocessors-onln)
+(defvar *num-cpus* (alien-funcall (extern-alien "sysconf" (function int int)) sb-unix:sc-nprocessors-onln)
   "CPU count.")
 
 (defparameter *db-path* "/tmp/rocksdb-cl-simple-example")
@@ -52,8 +48,7 @@ time ./c_simple_example
 
 (defmain ()
   ;; open Backup Engine that we will use for backing up our database
-  (let ((options 
-          (make-rocksdb-options 
+  (let ((options (make-rocksdb-options 
                   (lambda (opt)
                     (rocksdb-options-increase-parallelism opt *num-cpus*) ;; set # of online cores
                     (rocksdb-options-optimize-level-style-compaction opt 0)
