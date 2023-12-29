@@ -36,7 +36,7 @@ time ./c_simple_example
   (:use :cl :std :cli :rdb :sb-alien :rocksdb)
   (:export :main))
 
-(in-package :exmaples/cl-simple-example)
+(in-package :examples/cl-simple-example)
 (declaim (optimize (speed 3)))
 
 (defvar *num-cpus* (alien-funcall (extern-alien "sysconf" (function int int)) sb-unix:sc-nprocessors-onln)

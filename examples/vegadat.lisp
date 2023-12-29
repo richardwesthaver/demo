@@ -3,7 +3,7 @@
   (:use :cl :std :net/fetch :dat)
   (:export 
    :*vega-datasets* :*vega-dataset-base-url*
-   :fetch-vega-dataset))
+   :fetch-vega-datasets :purge-vega-datasets))
 
 (in-package :examples/vegadat)
 

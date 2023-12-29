@@ -2,13 +2,25 @@
 
 ;; based on https://github.com/no-defun-allowed/concurrent-hash-tables/blob/master/Examples/phony-redis.lisp
 
+;; if the heap gets exhausted you probably want to trying increasing
+;; the dynamic-space-size at runtime.
+
 ;;; Code:
-(require 'sb-concurrency)
 (defpackage :examples/mini-redis
   (:use :cl :std :net :obj :cli :sb-concurrency :sb-thread)
-  (:export))
+  (:export :main))
 
 (in-package :examples/mini-redis)
+
+(defparameter *worker-count* 4)
+(defparameter *writer-proportion* 0.5)
+(defvar *keys*
+  (loop for n below 130 by 2
+        collect (format nil "~r" n)))
+(defvar *other-keys*
+  (loop for n from 1 below 128 by 2
+        collect (format nil "~r" n)))
+(defvar *ops* 400000)
 
 (defun make-server ()
   (make-castable :test #'equal))
@@ -26,12 +38,12 @@
              (:quit (return))
              (:get 
               (multiple-value-bind (val p)
-                  (obj/hash:cgethash (cdr msg) server)
+                  (getchash (cdr msg) server)
                 (if p
                     (send-message rx `(:found ,val))
                     (send-message rx `(:not-found)))))
              (:put
-              (setf (cgethash (cadr msg) server)
+              (setf (getchash (cadr msg) server)
                     (copy-seq (caddr msg)))
               (send-message rx '(:ok)))
              (t (return))))))
@@ -87,16 +99,6 @@
         (setf position (mod (1+ position) 100))))
     (close-conn conn)))
 
-(defparameter *worker-count* 8)
-(defparameter *writer-proportion* 0.5)
-(defvar *keys*
-  (loop for n below 130 by 2
-        collect (format nil "~r" n)))
-(defvar *other-keys*
-  (loop for n from 1 below 128 by 2
-        collect (format nil "~r" n)))
-(defvar *ops* 10000000)
-
 (defun run (&optional (worker-count *worker-count*)
               (writer-proportion *writer-proportion*)
               (keys *keys*))
@@ -120,7 +122,8 @@
                              internal-time-units-per-second)))
              (throughput (/ (* *ops* worker-count) time)))
         (format t "~&~20@a: ~$ seconds (~d transactions/second)"
-                "mini-redis" time (round throughput))))))
+                "mini-redis" time (round throughput))))
+    server))
 
 (defmain ()
-  (run 4 1.0 *keys*))
+  (run))
