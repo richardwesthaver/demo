@@ -12,7 +12,7 @@
 
 (in-package :examples/mini-redis)
 
-(defparameter *worker-count* 4)
+(defparameter *worker-count* 8)
 (defparameter *writer-proportion* 0.5)
 (defvar *keys*
   (loop for n below 130 by 2

@@ -8,7 +8,7 @@
 (in-package :examples/vegadat)
 
 (defparameter *vega-dataset-base-url* "http://raw.githubusercontent.com/vega/vega-datasets/main/data/"
-  "Base URL for datasets included in Vega")
+  "Base URL for datasets included in Vega.")
 
 (defparameter *vega-dataset-stash* "vega/")
 

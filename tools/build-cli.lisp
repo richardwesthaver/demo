@@ -3,7 +3,7 @@
 #+sbcl
 (sb-ext:save-lisp-and-die *output*
                           :purify t
-                          :toplevel 'screenshotbot-sdk:main
+                          :toplevel 'homer:main
                           :executable t)
 #+ccl
 (ccl:save-application *output*
