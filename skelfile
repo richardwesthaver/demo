@@ -1,0 +1,7 @@
+;;; demo/skelfile --- Demo Skeleton
+:name demo
+:author "Richard Westhaver <richard.westhaver@gmail.com>"
+:version "0.1.0"
+:description "The CC Demo System"
+:rules
+()

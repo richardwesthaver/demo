@@ -1,2 +1,3 @@
 demo.asd
 examples/examples.asd
+examples/db/xdb/xdb.asd
