@@ -61,7 +61,9 @@ instance without any columns. Before use, make sure to open the
 database and on exit the database must be closed.")
 
 (declaim (oracle *mbdb-oracle*))
-(defvar *mbdb-oracle* (make-oracle sb-thread:*current-thread*)
+(defvar *mbdb-oracle* (multiple-value-bind (id thread) (make-oracle sb-thread:*current-thread*)
+                        (declare (ignore id))
+                        thread)
   "The oracle assigned to the mbdb system, which should usually be the current thread.")
 
 (declaim (task-pool *mbdb-tasks*))

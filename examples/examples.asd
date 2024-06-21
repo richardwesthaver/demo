@@ -1,5 +1,5 @@
 (defsystem :examples
-  :depends-on (:prelude)
+  :depends-on (:user)
   :components 
   ((:module "clos"
     :components ((:file "pkg")
