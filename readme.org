@@ -1,4 +1,1 @@
 #+TITTLE: Demo
-Welcome to the Compiler Company Demo. What you will find here is a
-modular client-server software stack which can be extended and
-customized by the user at runtime.
