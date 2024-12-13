@@ -15,11 +15,15 @@
 
 (defvar *tao-directory* "/tmp/tao/")
 
-(defvar *tao-log-dir*)
-(defvar *tao-db-dir*)
+(defvar *tao-log-dir* (merge-pathnames "log/" *tao-directory*))
+(defvar *tao-db-dir* (merge-pathnames "db/" *tao-directory*))
 (defvar *tao-cfs*
-  (vector (make-rdb-cf "nodes")
-          (make-rdb-cf "edges")))
+  (vector (make-rdb-cf "node")
+          (make-rdb-cf "edge")
+          (make-rdb-cf "user-name")
+          (make-rdb-cf "location-name")
+          (make-rdb-cf "location-coordinates")
+          (make-rdb-cf "comment-text")))
 
 (defun tao-path (path &optional (root *tao-directory*))
   (merge-pathnames path root))
@@ -31,12 +35,21 @@
 
 (defclass tao-graph (graph) ())
 
-(defclass tao-db (database)
-  ((db :type rdb)))
+(defclass tao-db (rdb-database) ())
 
 (defclass tao (tao-db tao-graph)
   ((dir :initarg :dir)))
 
+;;; TAO API
+(defgeneric assoc-add (id1 atime id2 time &rest slots))
+(defgeneric assoc-delete (id1 atype id2))
+(defgeneric assoc-change-type (id1 atype id2 newtype))
+(defgeneric assoc-get (id1 atype id2set &optional high low))
+(defgeneric assoc-count (id1 atype))
+(defgeneric assoc-range (id1 atype pos limit))
+(defgeneric assoc-time-range (id1 atype high low limit))
+
+;;; Top-level
 (defun ensure-tao-directories (&optional (root *tao-directory*))
   (setf *tao-log-dir* (ensure-directories-exist (tao-path "log/" root) :verbose t))
   root)

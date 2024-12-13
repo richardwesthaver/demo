@@ -9,7 +9,7 @@
   :source-control (:hg "https://vc.compiler.company/demo")
   :license "WTF"
   :depends-on (:user)
-  :components ((:file "pkg")))
+  :components ())
 
 (defmethod perform :after ((op load-op) (c (eql (find-system :demo))))
   (pushnew :demo *features*))

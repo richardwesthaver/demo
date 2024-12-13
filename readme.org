@@ -1,1 +1,24 @@
 #+TITTLE: Demo
+#+CALL: project-details()
+
+#+RESULTS:
+|-------------+----------------------------------------------------|
+| name        | demo                                               |
+| version     | 0.1.0                                              |
+| description | The CC Demo System                                 |
+| skel-id     | 0af9-06a7-9152-e7c1                                |
+| root        | ~/comp/demo/                                       |
+| vc          | :hg [[https://vc.compiler.company/demo][vc.compiler.company/demo]] :rev [[https://vc.compiler.company/demo/rev/99d4ab4f8d53][99d4ab4f8d53:44+]] |
+| tags        |                                                    |
+| updated     | Sun Aug 11 01:50:18 2024 -0400                     |
+| langs       | lisp org text                                      |
+| lines       | 2734 :λ 2074 :# 236 :_ 424                         |
+|-------------+----------------------------------------------------|
+
+#+CALL: project-links()
+
+#+RESULTS:
+- [[https://compiler.company/docs/demo/index.html][Docs]]
+- [[https://compiler.company/docs/demo/stats.html][Stats]]
+- [[https://compiler.company/docs/demo/man.html][Manual]]
+- [[https://compiler.company/plan/tasks/demo.html][Tasks]]

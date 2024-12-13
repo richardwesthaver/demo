@@ -52,7 +52,7 @@
 ;; The main loop of our yoctochat server. The 'defmain' macro will
 ;; produce a function 'main' which can be saved as an executable
 ;; entry-point.
-(defmain ()
+(defmain start-yoctochat ()
   (init-io *queue-depth*)
   (setf *io* nil))
 

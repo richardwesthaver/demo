@@ -1,6 +1,6 @@
 ;; from https://github.com/Lisp-Stat/plot/blob/master/src/vega/vega-datasets.lisp
 (defpackage :examples/vegadat
-  (:use :cl :std :net/fetch :dat)
+  (:use :cl :std :dat)
   (:export 
    :*vega-datasets* :*vega-dataset-base-url*
    :fetch-vega-datasets :purge-vega-datasets))
@@ -13,7 +13,7 @@
 (defparameter *vega-dataset-stash* "vega/")
 
 
-;; (gethash :airpots *vega-datasets*)
+;; (gethash :airports *vega-datasets*)
 (defvar *vega-datasets* (make-hash-table :size 66 :test #'equal)
   "All Vega example data sets. k=symbol,v=url")
 
@@ -29,8 +29,9 @@
 (defun fetch-vega-datasets ()
   (ensure-directories-exist *vega-dataset-stash*)
   (maphash-keys
-   (lambda (x) (download (gethash x *vega-datasets*) 
-                         (merge-pathnames x *vega-dataset-stash*)))
+   (lambda (x) 
+     (with-open-file (file (merge-pathnames x *vega-dataset-stash*))
+       (write-sequence (req:get (gethash x *vega-datasets*) :force-binary t) file)))
    *vega-datasets*))
 
 (defun purge-vega-datasets ()

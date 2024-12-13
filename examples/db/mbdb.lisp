@@ -25,7 +25,7 @@
 (in-package :std-user)
 (defpkg :examples/mbdb
   (:use :cl :std :dat/json :net/fetch :obj/id :rdb :cli/clap :obj/uuid
-        :sb-concurrency :log :dat/csv :dat/proto :sb-thread)
+        :sb-concurrency :log :dat/csv :dat/proto :sb-thread :db)
   (:import-from :obj/uuid :make-uuid-from-string)
   (:import-from :cli/progress :with-progress-bar :make-progress-bar
    :*progress-bar* :*progress-bar-enabled* :update-progress)
@@ -67,7 +67,7 @@ database and on exit the database must be closed.")
   "The oracle assigned to the mbdb system, which should usually be the current thread.")
 
 (declaim (task-pool *mbdb-tasks*))
-(defvar *mbdb-tasks* (make-task-pool :oracle-id (oracle-id *mbdb-oracle*))
+(defvar *mbdb-tasks* (make-task-pool)
   "The mbdb task pool. This object holds a queue of jobs which are
 dispatched to workers. Results are collected and processed by the
 oracle.")
@@ -100,11 +100,11 @@ files.")
      ;; (parse-uri
      *mbdump-pack-url*
      ;; )
-     *mbdump-pack*)))
+     :output *mbdump-pack*)))
 
 (defun mbsamp-fetch ()
   (unless (probe-file *mbsamp-pack*)
-    (download *mbsamp-pack-url* *mbsamp-pack*)))
+    (download *mbsamp-pack-url* :output *mbsamp-pack*)))
 
 (defun mbsamp-unpack ()
   ;; unpack into mbsamp
@@ -297,7 +297,7 @@ Returns multiple values: the list of columns, the id, and type-id if present."
 (defclass mbdb-stage (stage) ())
 
 ;;; Main
-(defmain ()
+(defmain start-mbdb ()
   (let ((*default-pathname-defaults* *mbdb-path*)
         (*progress-bar-enabled* t)
         (*csv-separator* #\Tab)
@@ -308,22 +308,22 @@ Returns multiple values: the list of columns, the id, and type-id if present."
     (ensure-directories-exist *mbdb-worker-dir* :verbose t)
     ;; prepare workers
     (setq *mbdb-oracle* (make-oracle sb-thread:*current-thread*))
-    (setq *mbdb-tasks* (make-task-pool :oracle-id (oracle-id *mbdb-oracle*)))
+    (setq *mbdb-tasks* (make-task-pool))
     ;; (make-workers
     ;; (push-worker (make-thread #'?) *mbdb-tasks*)
 
     ;; (with-tasks ())
 
     ;; fetch
-    (let ((job (make-job (make-array 2 :fill-pointer 0 :initial-element (make-task) :element-type 'task))))
-      (push-task (make-task #'mbsamp-fetch) job)
-      (push-task (make-task #'mbdump-fetch) job)
-      (push-job job *mbdb-tasks*))
-    ;; unpack
-    (let ((job (make-job (make-array 2 :fill-pointer 0 :initial-element (make-task) :element-type 'task))))
-      (push-task (make-task #'mbsamp-unpack) job)
-      (push-task (make-task #'mbdump-unpack) job)
-      (push-job job *mbdb-tasks*))
+    ;; (let ((job (make-job (make-array 2 :fill-pointer 0 :initial-element (make-task) :element-type 'task))))
+    ;;   (push-task (make-task #'mbsamp-fetch) job)
+    ;;   (push-task (make-task #'mbdump-fetch) job)
+    ;;   (push-job job *mbdb-tasks*))
+    ;; ;; unpack
+    ;; (let ((job (make-job (make-array 2 :fill-pointer 0 :initial-element (make-task) :element-type 'task))))
+    ;;   (push-task (make-task #'mbsamp-unpack) job)
+    ;;   (push-task (make-task #'mbdump-unpack) job)
+    ;;   (push-job job *mbdb-tasks*))
     ;; (sb-thread:make-thread #'mbsamp-fetch)
 
     ;; prepare column family data

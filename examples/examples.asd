@@ -16,7 +16,4 @@
                  (:file "tao")
                  (:file "mbdb")))
    (:module "net"
-    :components ((:file "yoctochat")))
-   (:module "app"
-    :components ((:file "mpk")))))
-
+    :components ((:file "yoctochat")))))

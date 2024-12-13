@@ -32,7 +32,7 @@ time ./c_simple_example
 |#
 
 ;;; Code:
-(defpackage :examples/cl-simple-example-raw
+(defpackage :examples/simple-rocksdb-example
   (:use :cl :std :cli :rdb :sb-alien :rocksdb)
   (:export :main))
 
@@ -42,11 +42,11 @@ time ./c_simple_example
 (defparameter *num-cpus* (num-cpus)
   "CPU count.")
 
-(defparameter *db-path* "/tmp/rocksdb-cl-simple-example-raw")
+(defparameter *db-path* "/tmp/simple-rocksdb-example")
 
-(defparameter *db-backup-path* "/tmp/rocksdb-cl-simple-example-backup-raw")
+(defparameter *db-backup-path* "/tmp/simple-rocksdb-example")
 
-(defmain ()
+(defmain start-simple-rocksdb-example ()
   ;; open Backup Engine that we will use for backing up our database
   (let ((options (make-rocksdb-options 
                   (lambda (opt)

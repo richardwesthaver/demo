@@ -104,7 +104,7 @@ dataset. If you run this make sure to assign the resulting value to
             do (write-line line out)))
     (push res *target*)))
 
-(defmain ()
+(defmain start-mbdump ()
   (ensure-directories-exist *target-directory*)
   (let ((workers))
     (dolist (file (hash-table-keys *mbdump-files*) workers)
