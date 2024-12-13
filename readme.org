@@ -2,18 +2,18 @@
 #+CALL: project-details()
 
 #+RESULTS:
-|-------------+----------------------------------------------------|
-| name        | demo                                               |
-| version     | 0.1.0                                              |
-| description | The CC Demo System                                 |
-| skel-id     | 0af9-06a7-9152-e7c1                                |
-| root        | ~/comp/demo/                                       |
-| vc          | :hg [[https://vc.compiler.company/demo][vc.compiler.company/demo]] :rev [[https://vc.compiler.company/demo/rev/99d4ab4f8d53][99d4ab4f8d53:44+]] |
-| tags        |                                                    |
-| updated     | Sun Aug 11 01:50:18 2024 -0400                     |
-| langs       | lisp org text                                      |
-| lines       | 2734 :λ 2074 :# 236 :_ 424                         |
-|-------------+----------------------------------------------------|
+|-------------+---------------------------------------------------|
+| name        | demo                                              |
+| version     | 0.1.0                                             |
+| description | The CC Demo System                                |
+| skel-id     | 0af9-06a7-9152-e7c1                               |
+| root        | ~/comp/demo/                                      |
+| vc          | :hg [[https://vc.compiler.company/demo][vc.compiler.company/demo]] :rev [[https://vc.compiler.company/demo/rev/438e0c96b137][438e0c96b137:45]] |
+| tags        |                                                   |
+| updated     | Thu Dec 12 22:42:16 2024 -0500                    |
+| langs       | lisp org text                                     |
+| lines       | 2580 :λ 1946 :# 230 :_ 404                        |
+|-------------+---------------------------------------------------|
 
 #+CALL: project-links()
 
