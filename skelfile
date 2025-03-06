@@ -3,5 +3,12 @@
 :author "Richard Westhaver <richard.westhaver@gmail.com>"
 :version "0.1.0"
 :description "The CC Demo System"
+:tags (:demo :examples :lisp)
 :rules
-()
+((upstream ()
+           (vc:hg-fast-export (sk-vc *skel-project*))
+           #$cd /tmp/demo
+           git remote add cb ssh://git@codeberg.org/c-c/demo
+           git remote add gh ssh://git@github.com/richardwesthaver/demo
+           git push -u cb default
+           git push gh default$#))
