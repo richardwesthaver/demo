@@ -24,8 +24,8 @@
 ;;; Code:
 (in-package :std-user)
 (defpkg :examples/mbdb
-  (:use :cl :std :dat/json :net/fetch :obj/id :rdb :cli/clap :obj/uuid
-        :sb-concurrency :log :dat/csv :dat/proto :sb-thread :db)
+  (:use :cl :std :dat/json :obj/id :rdb :cli/clap :obj/uuid
+   :log :dat/csv :dat/proto :sb-thread :db :ast)
   (:import-from :obj/uuid :make-uuid-from-string)
   (:import-from :cli/progress :with-progress-bar :make-progress-bar
    :*progress-bar* :*progress-bar-enabled* :update-progress)
@@ -51,11 +51,11 @@
 
 (defvar *default-mbdb-opts*
   (let ((opts (default-rdb-opts)))
-    (set-opt opts :enable-statistics 1)
+    (set-db-opt opts :enable-statistics 1)
     opts))
 
-(declaim (rdb *mbdb*))
-(defvar *mbdb* (create-db *mbdb-path* :opts *default-mbdb-opts* :open nil)
+(declaim (rdb-database *mbdb*))
+(defvar *mbdb* (make-db :rdb :path *mbdb-path* :opts *default-mbdb-opts* :open nil)
   "The local MusicBrainz database. The default value is an uninitialized
 instance without any columns. Before use, make sure to open the
 database and on exit the database must be closed.")
@@ -66,8 +66,7 @@ database and on exit the database must be closed.")
                         thread)
   "The oracle assigned to the mbdb system, which should usually be the current thread.")
 
-(declaim (task-pool *mbdb-tasks*))
-(defvar *mbdb-tasks* (make-task-pool)
+(defvar *mbdb-tasks* nil
   "The mbdb task pool. This object holds a queue of jobs which are
 dispatched to workers. Results are collected and processed by the
 oracle.")
@@ -96,15 +95,13 @@ files.")
 (defun mbdump-fetch ()
   "Download mbdump data pack."
   (unless (probe-file *mbdump-pack*)
-    (download
-     ;; (parse-uri
+    (req:fetch
      *mbdump-pack-url*
-     ;; )
-     :output *mbdump-pack*)))
+     *mbdump-pack*)))
 
 (defun mbsamp-fetch ()
   (unless (probe-file *mbsamp-pack*)
-    (download *mbsamp-pack-url* :output *mbsamp-pack*)))
+    (req:fetch *mbsamp-pack-url* *mbsamp-pack*)))
 
 (defun mbsamp-unpack ()
   ;; unpack into mbsamp
@@ -284,7 +281,7 @@ values. Return a 2d array of row(values)."
 
 Returns multiple values: the list of columns, the id, and type-id if present."
   (values
-   (mapcar (lambda (x) (make-rdb-cf (car x))) (json-object-members obj))
+   (mapcar (lambda (x) (make-rdb-cf (car x))) (ast obj))
    (make-uuid-from-string (json-getf obj "id"))
    (when-let ((tid (json-getf obj "type-id")))
      (make-uuid-from-string tid))))
@@ -308,7 +305,7 @@ Returns multiple values: the list of columns, the id, and type-id if present."
     (ensure-directories-exist *mbdb-worker-dir* :verbose t)
     ;; prepare workers
     (setq *mbdb-oracle* (make-oracle sb-thread:*current-thread*))
-    (setq *mbdb-tasks* (make-task-pool))
+    (setq *mbdb-tasks* (make-task-pool (num-cpus)))
     ;; (make-workers
     ;; (push-worker (make-thread #'?) *mbdb-tasks*)
 
@@ -329,9 +326,9 @@ Returns multiple values: the list of columns, the id, and type-id if present."
     ;; prepare column family data
     
     ;; initialize database
-    (with-db (db *mbdb*)
+    (with-db (db :db *mbdb*)
       (open-db db)
-      (setf (rdb-cfs db) *mbsamp-cfs*)
+      (setf (rdb::columns db) *mbsamp-cfs*)
       (backfill-opts db)
       (log:info! "database initialized"))
     ;; launch tasks
@@ -339,7 +336,7 @@ Returns multiple values: the list of columns, the id, and type-id if present."
     ;; wait
     (unwind-protect
          (progn
-           (wait-for-threads (task-pool-workers *mbdb-tasks*))
+           (wait-for-threads (workers *mbdb-tasks*))
            ;; summarize
            (when-let ((stats (print-stats *mbdb*))) (info! "mbdb stats" stats)))
       ;; close

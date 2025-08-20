@@ -57,7 +57,7 @@
 (defun init-tao-db (&optional (root *tao-directory*))
   (let ((db-dir (tao-path "db/" root)))
     (setf *tao-db-dir* db-dir)
-    (create-db db-dir :cfs *tao-cfs*)))
+    (make-db :rdb :path db-dir :cfs *tao-cfs*)))
 
 (defun make-tao (&key (dir *tao-directory*))
   (make-instance 'tao
@@ -66,17 +66,18 @@
 
 (defun run-tao ()
   (let ((opts (default-rdb-opts))) ;; configure database options
-    (set-opt opts "error-if-exists" 0)
-    (set-opt opts "db-log-dir" "/tmp/log")
+    (set-db-opt opts "error-if-exists" 0)
+    (set-db-opt opts "db-log-dir" "/tmp/log")
     (push-sap* opts)
-    (let ((db (create-db "tao"
-                         :opts opts
-                         ;; :cfs (vector (make-rdb-cf "nodes")
-                         ;;              (make-rdb-cf "edges"))
-                         :open t)))
-      (with-db (db db)
+    (let ((db (make-db :rdb 
+                :name "tao"
+                :opts opts
+                ;; :cfs (vector (make-rdb-cf "nodes")
+                ;;              (make-rdb-cf "edges"))
+                :open t)))
+      (with-db (db :db db)
         (flush-db db)
-        (let ((metadata (get-metadata db)))
+        (let ((metadata (db-metadata db)))
           (info!
            (rdb::rocksdb-column-family-metadata-get-name metadata)
            (rdb::rocksdb-column-family-metadata-get-size metadata)
@@ -98,6 +99,6 @@
             ;;   (rdb::rocksdb-sst-file-metadata-destroy smeta))
             (rdb::rocksdb-level-metadata-destroy lmeta))
           (rdb::rocksdb-column-family-metadata-destroy metadata))
-        (info! (get-prop db "rocksdb.stats"))
+        (info! (db-prop db "rocksdb.stats"))
         (close-db db))))
   (info! "TAO OK"))

@@ -32,35 +32,35 @@ time ./c_simple_example
 |#
 
 ;;; Code:
-(defpackage :examples/simple-rocksdb-example
-  (:use :cl :std :cli :rdb :sb-alien :rocksdb)
+(defpackage :examples/simple-rocksdb
+  (:use :cl :std :cli :rdb :sb-alien :rocksdb :cli/clap :db)
   (:export :main))
 
-(in-package :examples/cl-simple-example-raw)
-(declaim (optimize (speed 3)))
+(in-package :examples/simple-rocksdb)
+(declaim (optimize (speed 3) (safety 0)))
 
 (defparameter *num-cpus* (num-cpus)
   "CPU count.")
 
-(defparameter *db-path* "/tmp/simple-rocksdb-example")
+(defparameter *db-path* "/tmp/simple-rocksdb")
 
-(defparameter *db-backup-path* "/tmp/simple-rocksdb-example")
+(defparameter *db-backup-path* "/tmp/simple-rocksdb")
 
 (defmain start-simple-rocksdb-example ()
   ;; open Backup Engine that we will use for backing up our database
-  (let ((options (make-rocksdb-options 
+  (let ((options (rdb::make-rocksdb-options 
                   (lambda (opt)
                     (rocksdb-options-increase-parallelism opt *num-cpus*) ;; set # of online cores
                     (rocksdb-options-optimize-level-style-compaction opt 0)
-                    (rocksdb-options-set-create-if-missing opt 1)))))
-  (with-open-backup-engine-raw (be *db-backup-path* options)
+                    (rocksdb-options-set-create-if-missing opt t)))))
+  (rdb::with-open-backup-engine-raw (be *db-backup-path* options)
     ;; open DB
-    (with-open-db-raw (db *db-path* options)
+    (rdb::with-open-rdb-raw (db *db-path* options)
       ;; put key-value
-      (put-kv-str-raw db "key" "value")
+      (rdb::put-kv-str-raw db "key" "value")
       ;; get value
-      (string= (get-kv-str-raw db "key") "value")
+      (string= (rdb::get-kv-str-raw db "key") "value")
       ;; create new backup in a directory specified by *db-backup-path*
-      (create-new-backup-raw be db))
+      (rdb::create-new-backup-raw be db))
     ;; if something is wrong, you might want to restore data from last backup
-    (restore-from-latest-backup-raw be *db-path* *db-backup-path*))))
+    (rdb::restore-from-latest-backup-raw be *db-path* *db-backup-path*))))

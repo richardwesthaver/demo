@@ -28,9 +28,8 @@
 ;;     file position on each iteration before reading a line.
 
 ;;; Code:
-#-prelude (ql:quickload :prelude)
 (defpackage :mbdump
-  (:use :cl :std :log :sb-thread :sb-concurrency :dat/json :cli/clap :obj/time :sb-gray)
+  (:use :cl :std :log :dat/json :cli/clap :obj/time :sb-gray)
   (:export :main :*target*))
 
 (in-package :mbdump)
@@ -41,7 +40,7 @@
 du -sh data/mbdump # 242G
 du -sh /tmp/mbdump # 24G
 |#
-(defvar *mbdump-directory* (pathname "/mnt/y/data/packy/data/mbdump-full/"))
+(defvar *mbdump-directory* (pathname "/opt/store/data/sets/mbdump-full/"))
 
 (defun init-mbdump-files (&optional (dir *mbdump-directory*))
   "Count the total number of lines in each file under DIR. Return a

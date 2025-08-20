@@ -10,7 +10,7 @@
 (defparameter *vega-dataset-base-url* "http://raw.githubusercontent.com/vega/vega-datasets/main/data/"
   "Base URL for datasets included in Vega.")
 
-(defparameter *vega-dataset-stash* "vega/")
+(defparameter *vega-dataset-stash* ".vega/")
 
 
 ;; (gethash :airports *vega-datasets*)
@@ -30,8 +30,7 @@
   (ensure-directories-exist *vega-dataset-stash*)
   (maphash-keys
    (lambda (x) 
-     (with-open-file (file (merge-pathnames x *vega-dataset-stash*))
-       (write-sequence (req:get (gethash x *vega-datasets*) :force-binary t) file)))
+     (req:fetch (gethash x *vega-datasets*) (merge-pathnames x *vega-dataset-stash*)))
    *vega-datasets*))
 
 (defun purge-vega-datasets ()
