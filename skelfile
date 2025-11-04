@@ -4,9 +4,10 @@
 :version "0.1.0"
 :description "The CC Demo System"
 :tags (:demo :examples :lisp)
-:components ((:org "readme")
-             (:asd "demo")
-             (:mod "examples" (:asd "examples"))
+:components 
+((:org "readme")
+ (:sys "demo")
+ (:mod "examples" (:sys "examples")))
 :rules
 ((upstream ()
            (vc:hg-fast-export (sk-vc *skel-project*))

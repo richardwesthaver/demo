@@ -328,7 +328,7 @@ Returns multiple values: the list of columns, the id, and type-id if present."
     ;; initialize database
     (with-db (db :db *mbdb*)
       (open-db db)
-      (setf (rdb::columns db) *mbsamp-cfs*)
+      (setf (columns db) *mbsamp-cfs*)
       (backfill-opts db)
       (log:info! "database initialized"))
     ;; launch tasks
