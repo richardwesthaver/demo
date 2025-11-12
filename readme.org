@@ -8,9 +8,9 @@
 | description | The CC Demo System                                 |
 | skel-id     | 790670526347667393                                 |
 | root        | ~/comp/demo/                                       |
-| vc          | :hg [[https://vc.compiler.company/demo][vc.compiler.company/demo]] :rev [[https://vc.compiler.company/demo/rev/e87147eaf7c3][e87147eaf7c3:49+]] |
+| vc          | :hg [[https://vc.compiler.company/demo][vc.compiler.company/demo]] :rev [[https://vc.compiler.company/demo/rev/9fe08bc85553][9fe08bc85553:50+]] |
 | tags        | (DEMO EXAMPLES LISP)                               |
-| updated     | Tue Aug 19 21:16:19 2025 -0400                     |
+| updated     | Tue Nov 04 15:23:30 2025 -0500                     |
 | langs       | lisp org text                                      |
 | lines       | 837 :λ 499 :# 178 :_ 160                           |
 |-------------+----------------------------------------------------|

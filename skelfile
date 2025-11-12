@@ -3,7 +3,7 @@
 :author "Richard Westhaver <richard.westhaver@gmail.com>"
 :version "0.1.0"
 :description "The CC Demo System"
-:tags (:demo :examples :lisp)
+:tags (demo examples lisp)
 :components 
 ((:org "readme")
  (:sys "demo")
