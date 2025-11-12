@@ -10,7 +10,7 @@
  (:mod "examples" (:sys "examples")))
 :rules
 ((upstream ()
-           (vc:hg-fast-export (sk-vc *skel-project*))
+           (vc:hg-fast-export (vc *skel-project*))
            #$cd /tmp/demo
            git remote add cb ssh://git@codeberg.org/c-c/demo
            git remote add gh ssh://git@github.com/richardwesthaver/demo
