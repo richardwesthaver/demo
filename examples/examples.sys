@@ -1,8 +1,8 @@
 (defsys :examples
-  :depends-on (:core/user)
-  :components 
-  ((:file "vegadat")
-   (:file "mbdump")
-   (:dir "db")
-   (:dir "net")
-   (:dir "cli")))
+ :require (:core/user)
+ :components 
+ ((:file "vegadat")
+  (:file "mbdump")
+  (:dir "db")
+  (:dir "net")
+  (:dir "cli")))
