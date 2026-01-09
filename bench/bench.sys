@@ -1,0 +1,11 @@
+;;; ~/comp/demo/bench/bench.sys --- Bench Sytem Definitions
+(defsys :bench
+ :components
+ ((:pkg "pkg")
+  (:file "lan-party")
+  (:mod "tpc-h"
+   :components
+   ((:pkg "pkg")
+    (:file "dbgen")
+    (:file "tpc-h")))
+  (:file "bench")))

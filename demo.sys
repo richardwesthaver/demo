@@ -2,5 +2,5 @@
 (defsys :demo
  :version "0.1.0"
  :description "core demo system"
- :require (:user)
+ :require (:user :examples :bench)
  :components ())
