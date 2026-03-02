@@ -29,7 +29,7 @@
 
 ;;; Code:
 (defpackage :mbdump
-  (:use :cl :std :log :dat/json :cli/clap :obj/time :sb-gray)
+  (:use :cl :std :log :dat/json :cli :obj/time :sb-gray)
   (:export :main :*target*))
 
 (in-package :mbdump)

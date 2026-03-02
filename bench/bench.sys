@@ -2,10 +2,7 @@
 (defsys :bench
  :components
  ((:pkg "pkg")
+  (:file "ironclad")
   (:file "lan-party")
-  (:mod "tpc-h"
-   :components
-   ((:pkg "pkg")
-    (:file "dbgen")
-    (:file "tpc-h")))
+  (:file "tpc-h")
   (:file "bench")))

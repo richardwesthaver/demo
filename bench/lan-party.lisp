@@ -3,14 +3,7 @@
 ;; 
 
 ;;; Code:
-(in-package :std-user)
-
-(defpkg :bench/lan-party
-  (:use :cl :std :net/srv/udp :log :json :obj :rdb :net :graph)
-  (:export :lan-party :lan-party-config :lan-node :emacs-lan-node))
-
 (in-package :bench/lan-party)
-
 ;; Config
 (defconfig lan-party-config (ast) 
   ((emacs-nodes)

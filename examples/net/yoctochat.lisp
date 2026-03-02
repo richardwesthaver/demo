@@ -25,7 +25,7 @@
 
 ;;; Code:
 (defpackage :examples/yoctochat
-  (:use :cl :std :net :cli/clap :io :log :sb-alien)
+  (:use :cl :std :net :cli :io :log :sb-alien)
   (:import-from :uring :load-uring))
 
 (in-package :examples/yoctochat)

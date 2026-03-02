@@ -24,7 +24,7 @@
 ;;; Code:
 (in-package :std-user)
 (defpkg :examples/mbdb
-  (:use :cl :std :dat/json :obj/id :rdb :cli/clap :obj/uuid
+  (:use :cl :std :dat/json :obj/id :rdb :cli :obj/uuid
    :log :dat/csv :dat/proto :sb-thread :db :ast)
   (:import-from :obj/uuid :make-uuid-from-string)
   (:import-from :cli/progress :with-progress-bar :make-progress-bar
@@ -289,7 +289,7 @@ Returns multiple values: the list of columns, the id, and type-id if present."
 ;;; Tasks
 (defvar *mbdb-buffer-size* 4096)
 
-(defclass mbdb-task (task) ())
+(defkernel mbdb-task (task) ())
 
 (defclass mbdb-stage (stage) ())
 
@@ -298,14 +298,13 @@ Returns multiple values: the list of columns, the id, and type-id if present."
   (let ((*default-pathname-defaults* *mbdb-path*)
         (*progress-bar-enabled* t)
         (*csv-separator* #\Tab)
-        (*cpus* (num-cpus))
         (*log-timestamp* nil)
         (*log-level* :info))
     (log:info! "Welcome to MBDB")
     (ensure-directories-exist *mbdb-worker-dir* :verbose t)
     ;; prepare workers
     (setq *mbdb-oracle* (make-oracle sb-thread:*current-thread*))
-    (setq *mbdb-tasks* (make-task-pool (num-cpus)))
+    (setq *mbdb-tasks* (make-thread-pool (num-cpus) :class 'std/task:task-pool))
     ;; (make-workers
     ;; (push-worker (make-thread #'?) *mbdb-tasks*)
 
@@ -328,7 +327,7 @@ Returns multiple values: the list of columns, the id, and type-id if present."
     ;; initialize database
     (with-db (db :db *mbdb*)
       (open-db db)
-      (setf (columns db) *mbsamp-cfs*)
+      (setf (obj:columns db) *mbsamp-cfs*)
       (backfill-opts db)
       (log:info! "database initialized"))
     ;; launch tasks

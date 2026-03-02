@@ -6,13 +6,13 @@
 | name        | demo                                               |
 | version     | 0.1.0                                              |
 | description | The CC Demo System                                 |
-| skel-id     | 790670526347667393                                 |
+| id          | 790670526347667393                                 |
 | root        | ~/comp/demo/                                       |
-| vc          | :hg [[https://vc.compiler.company/demo][vc.compiler.company/demo]] :rev [[https://vc.compiler.company/demo/rev/0d40e9475d7b][0d40e9475d7b:52+]] |
-| tags        | (DEMO EXAMPLES LISP)                               |
-| updated     | Tue Nov 11 19:46:43 2025 -0500                     |
+| vc          | :hg [[https://vc.compiler.company/demo][vc.compiler.company/demo]] :rev [[https://vc.compiler.company/demo/rev/a2e100adc9a9][a2e100adc9a9:54+]] |
+| tags        | DEMO EXAMPLES LISP                                 |
+| updated     | Thu Jan 08 19:37:50 2026 -0500                     |
 | langs       | lisp org text                                      |
-| lines       | 837 :λ 499 :# 178 :_ 160                      |
+| lines       | 4879 :code 3807 :comment 535 :blank 537            |
 |-------------+----------------------------------------------------|
 
 #+CALL: project-links()

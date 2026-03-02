@@ -1,5 +1,3 @@
-;;; -*- Mode:Lisp; Package:XLIB; Syntax:COMMON-LISP; Base:10; Lowercase:T -*-
-
 ;;; CLX interface for Bezier Spline Extension.
 
 ;;;

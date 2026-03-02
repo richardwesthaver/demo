@@ -533,9 +533,9 @@
 	       (repaint-window window x y (1- (+ x width)) (1- (+ y height)))))
 	    t)
        (:key-press (window code)
-	  (case (xlib:keysym->character
+	           (case (xlib:character-from-keysym
 		 *display*
-		 (xlib:keycode->keysym *display* code (make-shift-foo)))
+		 (xlib:keysym-from-keycode *display* code (make-shift-foo)))
 	       (#\q (quit-window window))
 	       (#\? (display-help))
 	       ((:left-shift :right-shift)
@@ -548,9 +548,9 @@
        (:key-release (window code)
 	  (let ((window window))
 	    (declare (ignore window))
-	    (case (xlib:keysym->character
+	    (case (xlib:character-from-keysym
 		   *display*
-		   (xlib:keycode->keysym *display* code 0))
+		   (xlib:keysym-from-keycode *display* code 0))
 	      (:character-set-switch
 	       (setf *modstate* (delete :character-set-switch *modstate*)))
 	      ((:left-control :right-control)
