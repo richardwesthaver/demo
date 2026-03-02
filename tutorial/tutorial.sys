@@ -1,0 +1,4 @@
+;;; tutorial.sys --- Tutorial Sytem Definitions
+(defsys :tutorial
+  :require (:std :log)
+ :components ((:file "intro")))
